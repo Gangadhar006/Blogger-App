@@ -1,0 +1,19 @@
+#############################################################################
+# Database Configuration
+#############################################################################
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/blogger_app
+    username: root
+    password: pass
+  application:
+    name: Blogger-App
+
+  #############################################################################
+  # Hibernate Configuration
+  #############################################################################
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
