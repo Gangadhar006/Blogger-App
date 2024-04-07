@@ -2,7 +2,9 @@ package org.blogger.bloggerapp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class BlogPosts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +38,7 @@ public class BlogPosts {
     @OneToMany(mappedBy = "post")
     private List<Votes> votes;
 
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @LastModifiedDate

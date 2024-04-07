@@ -1,0 +1,33 @@
+package org.blogger.bloggerapp.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.blogger.bloggerapp.payload.request.SigninRequest;
+import org.blogger.bloggerapp.payload.request.SignupRequest;
+import org.blogger.bloggerapp.payload.response.SigninResponse;
+import org.blogger.bloggerapp.payload.response.SignupResponse;
+import org.blogger.bloggerapp.service.IAuthenticationService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+
+@RestController
+@RequestMapping("/api/user")
+@RequiredArgsConstructor
+public class AuthenticationController {
+
+    private final IAuthenticationService authenticationService;
+
+    @PostMapping("/signin")
+    public ResponseEntity<SigninResponse> signin(@RequestBody SigninRequest signinRequest) {
+        return ResponseEntity.ok().body(authenticationService.signin(signinRequest));
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<SignupResponse> signup(@RequestBody SignupRequest signupRequest) {
+        return ResponseEntity.ok().body(authenticationService.signup(signupRequest));
+    }
+}
