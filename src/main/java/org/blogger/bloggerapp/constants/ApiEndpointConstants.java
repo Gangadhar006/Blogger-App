@@ -11,4 +11,8 @@ public class ApiEndpointConstants {
     public static final String BLOGPOSTS_BASE_URL="/api/blog";
     public static final String BLOGPOSTS_ID_URL="{blogId}";
     public static final String BLOGPOSTS_IMAGE_URL="{blogId}/image";
+    public static final String COMMENTS_BASE_URL = "/api/{blogId}/comment";
+    public static final String VOTES_BASE_URL = "/api/{blogId}/votes";
+    public static final String VOTES_UPVOTE_URL = "/upvote";
+    public static final String VOTES_DOWNVOTE_URL = "/downvote";
 }

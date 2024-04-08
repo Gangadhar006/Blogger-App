@@ -28,6 +28,4 @@ public class Comments {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-
-    private Long parentCommentId;
 }
