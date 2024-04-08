@@ -8,11 +8,14 @@ spring:
     password: pass
   application:
     name: Blogger-App
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   #############################################################################
   # Hibernate Configuration
   #############################################################################
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update

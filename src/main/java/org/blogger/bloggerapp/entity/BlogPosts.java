@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,7 +21,7 @@ public class BlogPosts {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Users user;
 
     @Column(unique = true, nullable = false)
@@ -28,6 +29,10 @@ public class BlogPosts {
 
     @Column(unique = true, nullable = false)
     private String content;
+
+    @Lob
+    @Column(length = 1048576)
+    private byte[] imageData;
 
     @OneToMany(mappedBy = "post")
     private List<Comments> comments;
@@ -41,6 +46,6 @@ public class BlogPosts {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

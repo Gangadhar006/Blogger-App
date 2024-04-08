@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface IJwtService {
     String extractEmail(String token);
 
-    String generateToken(UserDetails userDetails);
+    String generateToken(String email);
 
-    boolean isTokenValid(String token, UserDetails userDetails);
+    Boolean isTokenValid(String token, UserDetails userDetails);
 }

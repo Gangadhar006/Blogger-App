@@ -10,10 +10,16 @@ import org.blogger.bloggerapp.repository.IUsersRepository;
 import org.blogger.bloggerapp.service.IAuthenticationService;
 import org.blogger.bloggerapp.service.IJwtService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static org.blogger.bloggerapp.constants.AppConstants.INVALID_CREDENTIALS_MESSAGE;
 
 @Service
 @RequiredArgsConstructor
@@ -24,16 +30,19 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     private final ModelMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public SigninResponse signin(SigninRequest signinRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(), signinRequest.getPassword()));
-
-        Users user = userRepo.findByEmail(signinRequest.getEmail())
-                .orElseThrow(IllegalArgumentException::new);
-        String jwt = jwtService.generateToken(user);
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(), signinRequest.getPassword()));
+        String jwt;
+        if (authentication.isAuthenticated())
+            jwt = jwtService.generateToken(signinRequest.getEmail());
+        else
+            throw new UsernameNotFoundException(INVALID_CREDENTIALS_MESSAGE);
         return SigninResponse.builder()
                 .token(jwt)
-                .userId(user.getId())
                 .build();
     }
 

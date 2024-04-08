@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class SigninResponse {
-    private Long userId;
     private String token;
 }

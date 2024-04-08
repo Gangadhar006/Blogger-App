@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
+import static org.blogger.bloggerapp.constants.ApiEndpointConstants.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping(AUTHENTICATION_BASE_URL)
 @RequiredArgsConstructor
 public class AuthenticationController {
 
     private final IAuthenticationService authenticationService;
 
-    @PostMapping("/signin")
+    @PostMapping(AUTHENTICATION_SIGNIN_URL)
     public ResponseEntity<SigninResponse> signin(@RequestBody SigninRequest signinRequest) {
         return ResponseEntity.ok().body(authenticationService.signin(signinRequest));
     }
 
-    @PostMapping("/signup")
+    @PostMapping(AUTHENTICATION_SIGNUP_URL)
     public ResponseEntity<SignupResponse> signup(@RequestBody SignupRequest signupRequest) {
         return ResponseEntity.ok().body(authenticationService.signup(signupRequest));
     }
