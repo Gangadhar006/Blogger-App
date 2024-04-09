@@ -37,10 +37,11 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(), signinRequest.getPassword()));
         String jwt;
+
         if (authentication.isAuthenticated())
             jwt = jwtService.generateToken(signinRequest.getEmail());
-        else
-            throw new UsernameNotFoundException(INVALID_CREDENTIALS_MESSAGE);
+        else throw new UsernameNotFoundException(INVALID_CREDENTIALS_MESSAGE);
+
         return SigninResponse.builder()
                 .token(jwt)
                 .build();

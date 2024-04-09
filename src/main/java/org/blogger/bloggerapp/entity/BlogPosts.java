@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -38,7 +39,7 @@ public class BlogPosts {
     private List<Comments> comments;
 
     @ManyToMany(mappedBy = "post")
-    private List<Tags> tags;
+    private Set<Tags> tags;
 
     @OneToMany(mappedBy = "post")
     private List<Votes> votes;

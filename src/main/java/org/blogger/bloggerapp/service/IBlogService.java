@@ -1,5 +1,6 @@
 package org.blogger.bloggerapp.service;
 
+import org.blogger.bloggerapp.payload.TagsDto;
 import org.blogger.bloggerapp.payload.request.BlogPostsRequestDto;
 import org.blogger.bloggerapp.payload.response.BlogPostsResponseDto;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,5 +19,7 @@ public interface IBlogService {
 
     List<BlogPostsResponseDto> fetchBlogByUser();
 
-    String uploadImage(MultipartFile image, Long blogId) throws IOException;
+    TagsDto saveTagsToPost(Long blogId, TagsDto tagsDto);
+
+    List<TagsDto> fetchTagsFromPost(Long blogId);
 }

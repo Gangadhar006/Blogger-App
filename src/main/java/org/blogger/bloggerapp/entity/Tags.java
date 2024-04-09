@@ -21,5 +21,5 @@ public class Tags {
     @ManyToMany
     private List<BlogPosts> post;
 
-    private String tagName;
+    private String tags;
 }

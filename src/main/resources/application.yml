@@ -19,3 +19,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+#      Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYW5nQGdtYWlsLmNvbSIsImlhdCI6MTcxMjY0OTExNywiZXhwIjoxNzEyNjUwNTU3fQ.Y39fuboYBYsEyBXSjp1IWtzrc9RdkCzqOLZrvouqUpo
