@@ -1,5 +1,6 @@
 package org.blogger.bloggerapp.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.blogger.bloggerapp.payload.TagsDto;
 import org.blogger.bloggerapp.payload.request.BlogPostsRequestDto;
@@ -23,16 +24,14 @@ import static org.blogger.bloggerapp.constants.ApiEndpointConstants.*;
 public class BlogPostsController {
 
     private final IBlogService blogService;
-    private final IBlogPostsRepository blogRepo;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping
-    public ResponseEntity<BlogPostsResponseDto> createBlog(@RequestBody BlogPostsRequestDto blogPostsRequestDto) throws IOException {
+    public ResponseEntity<BlogPostsResponseDto> createBlog(@Valid @RequestBody BlogPostsRequestDto blogPostsRequestDto) throws IOException {
         return ResponseEntity.status(HttpStatus.CREATED).body(blogService.createBlog(blogPostsRequestDto));
     }
 
     @PutMapping(BLOGPOSTS_ID_URL)
-    public ResponseEntity<BlogPostsResponseDto> editBlog(@RequestBody BlogPostsRequestDto blogPostsRequestDto,
+    public ResponseEntity<BlogPostsResponseDto> editBlog(@Valid @RequestBody BlogPostsRequestDto blogPostsRequestDto,
                                                          @PathVariable Long blogId) {
         return ResponseEntity.status(HttpStatus.OK).body(blogService.editBlog(blogPostsRequestDto, blogId));
     }
@@ -55,7 +54,7 @@ public class BlogPostsController {
 
     @PostMapping(BLOGPOSTS_TAGS_URL)
     public ResponseEntity<TagsDto> saveTagsToPost(@PathVariable Long blogId,
-                                                  @RequestBody TagsDto tagsDto) {
+                                                  @Valid @RequestBody TagsDto tagsDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(blogService.saveTagsToPost(blogId, tagsDto));
     }
 

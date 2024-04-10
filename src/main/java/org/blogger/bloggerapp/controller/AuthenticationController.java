@@ -1,5 +1,6 @@
 package org.blogger.bloggerapp.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.blogger.bloggerapp.payload.request.SigninRequest;
 import org.blogger.bloggerapp.payload.request.SignupRequest;
@@ -22,12 +23,12 @@ public class AuthenticationController {
     private final IAuthenticationService authenticationService;
 
     @PostMapping(AUTHENTICATION_SIGNIN_URL)
-    public ResponseEntity<SigninResponse> signin(@RequestBody SigninRequest signinRequest) {
+    public ResponseEntity<SigninResponse> signin(@Valid @RequestBody SigninRequest signinRequest) {
         return ResponseEntity.ok().body(authenticationService.signin(signinRequest));
     }
 
     @PostMapping(AUTHENTICATION_SIGNUP_URL)
-    public ResponseEntity<SignupResponse> signup(@RequestBody SignupRequest signupRequest) {
+    public ResponseEntity<SignupResponse> signup(@Valid @RequestBody SignupRequest signupRequest) {
         return ResponseEntity.ok().body(authenticationService.signup(signupRequest));
     }
 }

@@ -1,5 +1,6 @@
 package org.blogger.bloggerapp.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.blogger.bloggerapp.payload.CommentsDto;
 import org.blogger.bloggerapp.service.ICommentsService;
@@ -19,7 +20,7 @@ public class CommentsController {
     private final ICommentsService commentService;
 
     @PostMapping
-    public ResponseEntity<CommentsDto> postComment(@RequestBody CommentsDto commentsDto,
+    public ResponseEntity<CommentsDto> postComment(@Valid @RequestBody CommentsDto commentsDto,
                                                    @PathVariable Long blogId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.postComment(commentsDto, blogId));
     }
