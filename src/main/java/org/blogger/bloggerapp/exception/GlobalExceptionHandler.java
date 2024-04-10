@@ -1,5 +1,7 @@
 package org.blogger.bloggerapp.exception;
 
+import io.jsonwebtoken.ClaimJwtException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.blogger.bloggerapp.payload.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

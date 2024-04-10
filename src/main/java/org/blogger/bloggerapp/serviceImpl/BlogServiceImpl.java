@@ -86,6 +86,6 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public List<TagsDto> fetchTagsFromPost(Long blogId) {
         List<Tags> tags = tagRepo.findByPostId(blogId);
-        return tags.stream().map(tag -> mapper.map(tag, TagsDto.class)).toList();
+        return tags.stream().map(tag -> mapper.map(tag, TagsDto.class)).toList()    ;
     }
 }

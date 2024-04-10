@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IVotesRepository extends JpaRepository<Votes, Long> {
-
     @Query(value = "SELECT SUM(up_vote) FROM VOTES WHERE post_id=:blogId", nativeQuery = true)
     Long upVoteCountByPost(Long blogId);
 
