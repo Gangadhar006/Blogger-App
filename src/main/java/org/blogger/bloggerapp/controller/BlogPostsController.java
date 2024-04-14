@@ -26,7 +26,7 @@ public class BlogPostsController {
     private final IBlogService blogService;
 
     @PostMapping
-    public ResponseEntity<BlogPostsResponseDto> createBlog(@Valid @RequestBody BlogPostsRequestDto blogPostsRequestDto) throws IOException {
+    public ResponseEntity<BlogPostsResponseDto> createBlog(@Valid @RequestBody BlogPostsRequestDto blogPostsRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(blogService.createBlog(blogPostsRequestDto));
     }
 

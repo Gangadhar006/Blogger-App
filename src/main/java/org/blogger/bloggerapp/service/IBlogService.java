@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IBlogService {
-    BlogPostsResponseDto createBlog(BlogPostsRequestDto blogPostsRequestDto) throws IOException;
+    BlogPostsResponseDto createBlog(BlogPostsRequestDto blogPostsRequestDto);
 
     BlogPostsResponseDto editBlog(BlogPostsRequestDto blogPostsRequestDto, Long blogId);
 

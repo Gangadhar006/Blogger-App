@@ -3,6 +3,7 @@ package org.blogger.bloggerapp.payload.request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.blogger.bloggerapp.entity.Users;
@@ -13,6 +14,7 @@ import static org.blogger.bloggerapp.constants.ValidationConstants.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class BlogPostsRequestDto {
     @NotBlank(message = TITLE_NOT_BLANK_MESSAGE)
     @Length(min = TITLE_MIN_LENGTH, max = TITLE_MAX_LENGTH, message = TITLE_LENGTH_MESSAGE)

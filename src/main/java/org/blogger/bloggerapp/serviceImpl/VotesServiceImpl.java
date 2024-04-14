@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class VotesService implements IVotesService {
+public class VotesServiceImpl implements IVotesService {
     private final IVotesRepository votesRepo;
     private final AppUtils appUtils;
 
@@ -19,7 +19,7 @@ public class VotesService implements IVotesService {
         return castVote(blogId, 1L, 0L);
     }
 
-    public Long castVote(Long blogId, Long upvote, Long downVote) {
+    private Long castVote(Long blogId, Long upvote, Long downVote) {
         BlogPosts blog = appUtils.getBlog(blogId);
         Votes votes = new Votes();
         votes.setUpVote(upvote);
